@@ -22,8 +22,8 @@
     },
     "nsis": {
         "oneClick": true,
-        "installerIcon": "./src/assets/icons/Blue-Hook-Logo.png",
-        "uninstallerIcon": "./src/assets/icons/Blue-Hook-Logo.png",
+        "installerIcon": "./src/assets/icons/Blue-Hook-Logo.ico",
+        "uninstallerIcon": "./src/assets/icons/Blue-Hook-Logo.ico",
         "uninstallDisplayName": "Blue Hook uninstaller",
         "license": "LICENSE.md",
         "perMachine": false,
