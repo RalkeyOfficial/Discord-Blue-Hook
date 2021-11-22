@@ -1,6 +1,147 @@
+@font-face {
+    font-family: 'Uni sans';
+    font-weight: regular;
+    src: url("./font/Uni\ Sans\ Regular.otf") format("opentype");
+}
+
+* {
+    font-family: 'Uni sans', sans-serif;
+    font-size: 16px;
+
+    color: #dcddde;
+
+    margin: 0;
+    padding: 0;
+
+    --main-background: #36393f;
+    --second-background: #2f3136;
+    --third-background: #202225;
+
+    --input-background: #32353b;
+
+    --blurple: #5865F2;
+    --green: #57F287;
+}
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  margin: auto;
-  max-width: 38rem;
-  padding: 2rem;
+    background-color: var(--main-background);
+    display: flex;
+    color: #dcddde;
+}
+
+body > div {
+    width: 50%;
+    min-width: 400px;
+    height: 100%;
+    border-radius: 5px;
+    border: 1px solid #232527;
+    margin: 1em;
+    padding: 1em;
+    font-size: 18px;
+    background-color: var(--second-background);
+}
+
+.input-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-field > input,
+.input-field > .color-selector {
+    margin: 0.5em;
+    background-color: var(--input-background);
+    border: none;
+    padding: 0.3em;
+    border-radius: 5px;
+}
+.input-field > div {
+    margin: 0.5em;
+}
+
+input:focus {
+    outline: none;
+}
+
+.color-selector > label {
+    margin-left: 0.5em;
+}
+.color-selector > input {
+    margin-left: 0.5em;
+    background-color: var(--input-background);
+    border: none;
+}
+
+.field-list {
+    display: flex;
+    flex-direction: column;
+}
+.field-list > .field-element {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    background-color: var(--third-background);
+    padding: 1em;
+    margin-bottom: 1em;
+}
+.field-list > .field-element > input {
+    margin-bottom: 0.5em;
+    background-color: var(--input-background);
+    border: none;
+    padding: 0.3em;
+    border-radius: 5px;
+}
+.field-list > .field-element > svg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+}
+
+button {
+    color: white;
+    width: 8em;
+    height: 2em;
+    border: none;
+    border-radius: 14px;
+    margin: 0.5em;
+}
+
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+
+    width: 1.3em;
+    height: 1.3em;
+    border: 2px solid var(--blurple);
+    border-radius: 50%;
+    margin-right: 0.3em;
+    transform: translateY(0.2em);
+
+    transition: all 0.2s ease;
+}
+
+input[type="checkbox"]:checked {
+    background-color: var(--blurple);
+}
+
+.add-field {
+    margin-top: 0;
+    background-color: #00000000;
+    border: 2px solid var(--blurple);
+
+    transition: all 0.3s ease;
+}
+.add-field:hover {
+    background-color: var(--blurple);
+}
+
+.sendWebhook-button {
+    background-color: #00000000;
+    border: 2px solid var(--green);
+
+    transition: all 0.3s ease;
+}
+.sendWebhook-button:hover {
+    background-color: var(--green);
 }
