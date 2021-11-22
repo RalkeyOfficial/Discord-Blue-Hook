@@ -24,9 +24,13 @@
         "oneClick": true,
         "installerIcon": "./src/assets/icons/blue-hooks.ico",
         "uninstallerIcon": "./src/assets/icons/blue-hooks.ico",
-        "uninstallDisplayName": "Blue-Hooks-uninstaller",
+        "uninstallDisplayName": "Blue Hooks uninstaller",
         "license": "LICENSE.md",
-        "allowToChangeInstallationDirectory": false
+        "perMachine": false,
+        "allowToChangeInstallationDirectory": false,
+        "runAfterFinish": true,
+        "createDesktopShortcut": "always",
+        "createStartMenuShortcut": true
     }
   },
 
