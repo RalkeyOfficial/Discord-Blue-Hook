@@ -1,0 +1,8 @@
+--- electron-builder
+https://www.youtube.com/watch?v=4IoAbY1V2sM
+
+--- embed structure
+https://birdie0.github.io/discord-webhooks-guide/discord_webhook.html
+
+--- fetch api
+https://www.youtube.com/watch?v=-4Lid7tBr6Y
