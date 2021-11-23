@@ -8,7 +8,19 @@
 
 <br>
 
-Discord Blue Hook is an open source project dedicated to being able to send webhook's to discord's webhook service with an easy to use GUI
+Blue Hook is an open source project dedicated to being able to send webhook's to discord's webhook service with an easy to use GUI
+
+---
+
+## What is a webhook?
+
+a webhook is a custom URL which acts as a gateway between any kind of service (script, website, etc) and discord channels.
+
+by sending data to the custom URL we can get discord to display a message in a discord channel.
+
+[read more about webhooks here](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks)
+
+by using Blue Hook you are able to highly customize the message send to the channel.
 
 ---
 
