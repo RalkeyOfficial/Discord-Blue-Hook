@@ -18,9 +18,9 @@ a webhook is a custom URL which acts as a gateway between any kind of service (s
 
 by sending data to the custom URL we can get discord to display a message in a discord channel.
 
-[read more about webhooks here](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks)
+[read more about webhooks here.](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks)
 
-by using Blue Hook you are able to highly customize the message send to the channel.
+by using Blue Hook's easy to use GUI you are able to send highly customized messages to the channel.
 
 ---
 
