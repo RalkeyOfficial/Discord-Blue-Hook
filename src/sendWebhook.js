@@ -54,13 +54,25 @@ async function sendWebhook(){
         "embeds": [embed]
     }
 
-    fetch(webhook, {
+    let result = await fetch(webhook, {
         "method":"POST",
         "headers": {
             "content-Type": "application/json"
         },
         "body": JSON.stringify(msg) 
     });
+
+    if (result.status === 200) {
+        alert("Webhook sent!");
+    } else if (result.status === 429) {
+        alert("Too many requests!");
+    } else if (result.status === 500) {
+        alert("Internal server error!");
+    } else if (result.status === 400) {
+        alert("Bad request!");
+    } else {
+        alert("Something went wrong!");
+    }
 }
 
 function checkWebhook(webhookUrl) {

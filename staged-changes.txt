@@ -1,1 +1,2 @@
 1. changed the icon in the app
+2. added alerts incase something went wrong
