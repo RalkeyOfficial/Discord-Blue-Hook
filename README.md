@@ -1,4 +1,4 @@
-# <div style="text-align:center;">Discord Blue Hook</div>
+# <div align="center">Discord Blue Hook</div>
 
 <div align="center">
     <img src="./src/assets/images/blue-hook-image.png" width="250px">
