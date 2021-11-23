@@ -4,7 +4,7 @@
     <img src="./src/assets/images/blue-hook-image.png" width="250px">
 </div>
 
-Discord Blue Hook is an open source project dedicated to being able to send webhook's easily to discord's webhook service with an easy to use GUI
+Discord Blue Hook is an open source project dedicated to being able to send webhook's to discord's webhook service with an easy to use GUI
 
 ---
 
