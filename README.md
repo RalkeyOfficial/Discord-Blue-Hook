@@ -30,6 +30,10 @@ by using Blue Hook's easy to use GUI you are able to send highly customized mess
 
 ---
 
+## supported OS:
+
+- Windows
+
 ## features:
 
 - send embed to custom webhook URL
