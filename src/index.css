@@ -24,18 +24,26 @@
     --yellow: #FEE75C;
 }
 
-body {
-    background-color: var(--main-background);
-    display: flex;
-    color: #dcddde;
+html, body {
+    width: 100%;
+    height: 100%;
 }
+body {
+    color: #dcddde;
+    background-color: var(--main-background);
+}
+
+.container {
+    display: flex;
+}
+
 @media screen and (min-width: 1200px) {
-    body {
+    .container {
         justify-content: center;
     }
 }
 
-body > div {
+.container > div {
     width: 50%;
     min-width: 400px;
     max-width: 600px;
@@ -172,4 +180,24 @@ input[type="checkbox"]:checked {
 
 .hidden {
     display: none !important;
+}
+
+.notification {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    margin: 0;
+    padding: 0;
+}
+.notification-text {
+    background-color: var(--second-background);
+    border-radius: 5px;
+    padding: 2em;
 }

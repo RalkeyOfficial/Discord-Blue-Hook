@@ -2,3 +2,4 @@
 2. added alerts incase something went wrong
 3. added a text field incase you dont want a embed
   3.5. added a add embed button
+4. app will now display a notification for 1 second if webhook has been sent succesfully or display the error

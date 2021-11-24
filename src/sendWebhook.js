@@ -47,16 +47,18 @@ async function sendWebhook(){
         return;
     };
 
-    const msg = {
+    let msg = {
         "content": contentText,
     }
     
     if (!embedEnabled) {
         const embed = generateEmbed();
-        msg += {"embeds": [embed]}
+        msg.embeds = [embed];
     }
 
-    let result = await fetch(webhook, {
+    console.log(msg);
+
+    let res = await fetch(webhook, {
         "method":"POST",
         "headers": {
             "content-Type": "application/json"
@@ -64,16 +66,16 @@ async function sendWebhook(){
         "body": JSON.stringify(msg) 
     });
 
-    if (result.status === 200) {
-        alert("Webhook sent!");
-    } else if (result.status === 429) {
-        alert("Too many requests!");
-    } else if (result.status === 500) {
-        alert("Internal server error!");
-    } else if (result.status === 400) {
-        alert("Bad request!");
+    if (res.status === 204) {
+        displayNotification("Webhook sent!");
+    } else if (res.status === 429) {
+        displayNotification("Too many requests! " + res.status);
+    } else if (res.status === 500) {
+        displayNotification("Internal server error!" + res.status);
+    } else if (res.status === 400) {
+        displayNotification("Invalid request!" + res.status);
     } else {
-        alert("Something went wrong!");
+        displayNotification("Unknown error! error:" + res.status);
     }
 }
 
@@ -163,4 +165,15 @@ function generateEmbed() {
     };
 
     return embed;
+}
+
+// a function to display a notification with custom text for 1 seconds and then remove it
+function displayNotification(text) {
+    const notification = document.getElementsByClassName("notification")[0];
+    const notificationText = document.getElementsByClassName("notification-text")[0];
+    notificationText.innerText = text;
+    notification.classList.remove("hidden");
+    setTimeout(() => {
+        notification.classList.add("hidden");
+    }, 1000);
 }
