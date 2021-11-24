@@ -38,7 +38,7 @@ by using Blue Hook's easy to use GUI you are able to send highly customized mess
 
 ## features:
 
-- send embed to custom webhook URL
+- send normal text message or embed to custom webhook URL
 - really customizable [embed](https://discordjs.guide/popular-topics/embeds.html)
   - custom author element
     - custom name
