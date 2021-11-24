@@ -1,2 +1,4 @@
 1. changed the icon in the app
 2. added alerts incase something went wrong
+3. added a text field incase you dont want a embed
+  3.5. added a add embed button

@@ -2,6 +2,7 @@ const svgInnerHtml = document.getElementsByClassName('minus-icon')[0].innerHTML;
 
 // event listeners
 const addFieldButton = document.getElementById("add-field").addEventListener("click", addFieldElement);
+const addEmbedButton = document.getElementById("add-embed").addEventListener("click", toggleEmbedElement);
 
 // default functions
 addEventListeners();
@@ -86,5 +87,19 @@ function addEventListeners() {
             return currentElement.nodeName === 'svg';
         });
         field[0].addEventListener("click", removeFieldElement);
+    }
+}
+
+function toggleEmbedElement() {
+    const embedField = document.getElementById('embed-element');
+    const embedButton = document.getElementById('add-embed');
+
+    embedField.classList.toggle('hidden');
+
+    embedButton.getAttribute('data-status-boolean') === 'true' ? embedButton.setAttribute('data-status-boolean', 'false') : embedButton.setAttribute('data-status-boolean', 'true');
+    if (embedButton.getAttribute('data-status-boolean') === 'true') {
+        embedButton.innerHTML = 'Add embed';
+    } else {
+        embedButton.innerHTML = 'Remove embed';
     }
 }

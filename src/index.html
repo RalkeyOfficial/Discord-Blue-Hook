@@ -3,59 +3,67 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Blue Hook | v1.0.0 | RalkeyOfficial on github</title>
+    <title>Blue Hook | v1.1.0 | RalkeyOfficial on github</title>
     <link rel="stylesheet" href="index.css">
 </head>
 
 <body>
     <div class="input-field">
-
+        
         <input type="url" placeholder="webhook Url" name="webhook" id="webhook">
 
-        <input type="text" placeholder="username" name="username" id="username">
-        <input type="url" placeholder="user url" name="user-url" id="user-url">
-        <input type="url" placeholder="user icon" name="user-icon" id="user-icon">
+        <input type="text" id="content" placeholder="Enter your text here (optional)">
 
-        <input type="text" placeholder="Title" name="title" id="title">
-        <input type="text" placeholder="Title url" name="titleUrl" id="titleUrl">
-        <input type="text" placeholder="description" name="description" id="description">
-        <div class="color-selector">
-            <label for="color">#</label>
-            <input type="text" placeholder="Hex color code" maxlength="6" minlength="6" name="color" id="color">
-        </div>
-        
-        <input type="url" placeholder="Thumbnail image" name="thumbnailUrl" id="thumbnailUrl">
+        <button class="add-embed" data-status-boolean="true" id="add-embed">Add Embed</button>
 
-        <div class="field-list" id="field-list">
-            <div class="field-element">
-                <input type="text" placeholder="field name" name="field-name">
-                <input type="text" placeholder="field value" name="field-value">
-                <div class="inline-and-label">
-                    <input type="checkbox" name="field-inline"><!--
-                 --><label for="field-inline">Inline on</label>
+        <div class="embed-element hidden" id="embed-element">
+            <input type="text" placeholder="username" name="username" id="username">
+            <input type="url" placeholder="user url" name="user-url" id="user-url">
+            <input type="url" placeholder="user icon" name="user-icon" id="user-icon">
+
+            <input type="text" placeholder="Title" name="title" id="title">
+            <input type="text" placeholder="Title url" name="titleUrl" id="titleUrl">
+            <input type="text" placeholder="description" name="description" id="description">
+            <div class="color-selector">
+                <label for="color">#</label>
+                <input type="text" placeholder="Hex color code" maxlength="6" minlength="6" name="color" id="color">
+            </div>
+            
+            <input type="url" placeholder="Thumbnail image" name="thumbnailUrl" id="thumbnailUrl">
+
+            <div class="field-list" id="field-list">
+                <div class="field-element">
+                    <input type="text" placeholder="field name" name="field-name">
+                    <input type="text" placeholder="field value" name="field-value">
+                    <div class="inline-and-label checkbox-div">
+                        <input type="checkbox" name="field-inline"><!--
+                     --><label for="field-inline">Inline on</label>
+                    </div>
+
+                    <svg class="minus-icon" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                    width="24" height="24"
+                    viewBox="0 0 172 172"
+                    style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#e74c3c"><path d="M86,17.2c-37.9948,0 -68.8,30.8052 -68.8,68.8c0,37.9948 30.8052,68.8 68.8,68.8c37.9948,0 68.8,-30.8052 68.8,-68.8c0,-37.9948 -30.8052,-68.8 -68.8,-68.8zM120.4,91.73333h-68.8c-3.1648,0 -5.73333,-2.5628 -5.73333,-5.73333c0,-3.17053 2.56853,-5.73333 5.73333,-5.73333h68.8c3.1648,0 5.73333,2.5628 5.73333,5.73333c0,3.17053 -2.56853,5.73333 -5.73333,5.73333z"></path></g></g></svg>
                 </div>
+                
+            </div>
+            <button class="add-field" id="add-field">Add field</button>
 
-                <svg class="minus-icon" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-                width="24" height="24"
-                viewBox="0 0 172 172"
-                style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#e74c3c"><path d="M86,17.2c-37.9948,0 -68.8,30.8052 -68.8,68.8c0,37.9948 30.8052,68.8 68.8,68.8c37.9948,0 68.8,-30.8052 68.8,-68.8c0,-37.9948 -30.8052,-68.8 -68.8,-68.8zM120.4,91.73333h-68.8c-3.1648,0 -5.73333,-2.5628 -5.73333,-5.73333c0,-3.17053 2.56853,-5.73333 5.73333,-5.73333h68.8c3.1648,0 5.73333,2.5628 5.73333,5.73333c0,3.17053 -2.56853,5.73333 -5.73333,5.73333z"></path></g></g></svg>
+            <input type="url" placeholder="image" name="imageUrl" id="imageUrl">
+            
+            <input type="text" placeholder="footer text" name="footer" id="footerText">
+            <input type="url" placeholder="footer icon" name="footerIcon" id="footerIconUrl">
+
+            <div class="timestamp checkbox-div">
+                <input type="checkbox" name="timestamp" id="timestamp">
+                <label for="timestamp">Timestamp</label>
             </div>
             
         </div>
-        <button class="add-field" id="add-field">Add field</button>
 
-        <input type="url" placeholder="image" name="imageUrl" id="imageUrl">
-        
-        <input type="text" placeholder="footer text" name="footer" id="footerText">
-        <input type="url" placeholder="footer icon" name="footerIcon" id="footerIconUrl">
-
-        <div class="timestamp">
-            <input type="checkbox" name="timestamp" id="timestamp">
-            <label for="timestamp">Timestamp</label>
-        </div>
-        
         <button class="sendWebhook-button" id="sendWebhook">Send webhook</button>
     </div>
+
     <div class="WIP">
         WIP
     </div>

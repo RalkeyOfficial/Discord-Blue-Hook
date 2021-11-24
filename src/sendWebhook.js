@@ -38,6 +38,8 @@ document.getElementById("sendWebhook").addEventListener("click", sendWebhook);
 
 async function sendWebhook(){
     const webhook = document.getElementById("webhook").value;
+    const contentText = document.getElementById("content").value;
+    const embedEnabled = document.getElementById("embed-element").classList.contains("hidden");
 
     let result = await checkWebhook(webhook);
     if (!result) {
@@ -45,13 +47,13 @@ async function sendWebhook(){
         return;
     };
 
-    const embed = generateEmbed();
-    
-    console.log(embed);
-    
     const msg = {
-        "content": "",
-        "embeds": [embed]
+        "content": contentText,
+    }
+    
+    if (!embedEnabled) {
+        const embed = generateEmbed();
+        msg += {"embeds": [embed]}
     }
 
     let result = await fetch(webhook, {

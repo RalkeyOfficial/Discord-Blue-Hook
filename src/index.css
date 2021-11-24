@@ -21,6 +21,7 @@
 
     --blurple: #5865F2;
     --green: #57F287;
+    --yellow: #FEE75C;
 }
 
 body {
@@ -28,10 +29,16 @@ body {
     display: flex;
     color: #dcddde;
 }
+@media screen and (min-width: 1200px) {
+    body {
+        justify-content: center;
+    }
+}
 
 body > div {
     width: 50%;
     min-width: 400px;
+    max-width: 600px;
     height: 100%;
     border-radius: 5px;
     border: 1px solid #232527;
@@ -45,17 +52,18 @@ body > div {
     display: flex;
     flex-direction: column;
 }
+.input-field > div {
+    display: flex;
+    flex-direction: column;
+}
 
-.input-field > input,
-.input-field > .color-selector {
+input,
+.color-selector {
     margin: 0.5em;
     background-color: var(--input-background);
     border: none;
     padding: 0.3em;
     border-radius: 5px;
-}
-.input-field > div {
-    margin: 0.5em;
 }
 
 input:focus {
@@ -66,7 +74,8 @@ input:focus {
     margin-left: 0.5em;
 }
 .color-selector > input {
-    margin-left: 0.5em;
+    padding: 0;
+    margin: 0 0 0 0.5em;
     background-color: var(--input-background);
     border: none;
 }
@@ -83,6 +92,7 @@ input:focus {
     background-color: var(--third-background);
     padding: 1em;
     margin-bottom: 1em;
+    margin: 1em 0.5em;
 }
 .field-list > .field-element > input {
     margin-bottom: 0.5em;
@@ -97,6 +107,10 @@ input:focus {
     right: 0;
     transform: translate(50%, -50%);
 }
+.checkbox-div {
+    display: flex;
+    align-items: center;
+}
 
 button {
     color: white;
@@ -108,7 +122,6 @@ button {
 }
 
 input[type="checkbox"] {
-    -webkit-appearance: none;
     appearance: none;
 
     width: 1.3em;
@@ -116,7 +129,6 @@ input[type="checkbox"] {
     border: 2px solid var(--blurple);
     border-radius: 50%;
     margin-right: 0.3em;
-    transform: translateY(0.2em);
 
     transition: all 0.2s ease;
 }
@@ -144,4 +156,20 @@ input[type="checkbox"]:checked {
 }
 .sendWebhook-button:hover {
     background-color: var(--green);
+}
+
+.add-embed {
+    background-color: #00000000;
+    border: 2px solid var(--yellow);
+
+    transition: all 0.3s ease;
+}
+.add-embed:hover {
+    background-color: var(--yellow);
+    color: black;
+}
+
+
+.hidden {
+    display: none !important;
 }
