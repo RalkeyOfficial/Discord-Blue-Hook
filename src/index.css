@@ -13,6 +13,8 @@
     margin: 0;
     padding: 0;
 
+    --text-color: #dcddde;
+
     --main-background: #36393f;
     --second-background: #2f3136;
     --third-background: #202225;
@@ -22,6 +24,7 @@
     --blurple: #5865F2;
     --green: #57F287;
     --yellow: #FEE75C;
+    --red: #ED4245;
 }
 
 html, body {
@@ -29,7 +32,7 @@ html, body {
     height: 100%;
 }
 body {
-    color: #dcddde;
+    color: var(--text-color);
     background-color: var(--main-background);
 }
 
@@ -56,10 +59,11 @@ body {
     background-color: var(--second-background);
 }
 
-.input-field {
-    display: flex;
-    flex-direction: column;
+.container > * > * {
+    margin: 0.5em
 }
+
+.input-field, 
 .input-field > div {
     display: flex;
     flex-direction: column;
@@ -67,7 +71,7 @@ body {
 
 input,
 .color-selector {
-    margin: 0.5em;
+    margin: 0.5em 0.5em 0.5em 0;
     background-color: var(--input-background);
     border: none;
     padding: 0.3em;
@@ -99,8 +103,7 @@ input:focus {
     border-radius: 5px;
     background-color: var(--third-background);
     padding: 1em;
-    margin-bottom: 1em;
-    margin: 1em 0.5em;
+    margin: 1em 0;
 }
 .field-list > .field-element > input {
     margin-bottom: 0.5em;
@@ -126,7 +129,7 @@ button {
     height: 2em;
     border: none;
     border-radius: 14px;
-    margin: 0.5em;
+    margin: 0.5em 0;
 }
 
 input[type="checkbox"] {
@@ -145,41 +148,67 @@ input[type="checkbox"]:checked {
     background-color: var(--blurple);
 }
 
-.add-field {
+.blurple-button {
     margin-top: 0;
     background-color: #00000000;
     border: 2px solid var(--blurple);
 
     transition: all 0.3s ease;
 }
-.add-field:hover {
+.blurple-button:hover {
     background-color: var(--blurple);
 }
 
-.sendWebhook-button {
+.green-button {
     background-color: #00000000;
     border: 2px solid var(--green);
 
     transition: all 0.3s ease;
 }
-.sendWebhook-button:hover {
+.green-button:hover {
     background-color: var(--green);
 }
 
-.add-embed {
+.yellow-button {
     background-color: #00000000;
     border: 2px solid var(--yellow);
 
     transition: all 0.3s ease;
 }
-.add-embed:hover {
+.yellow-button:hover {
     background-color: var(--yellow);
     color: black;
+}
+
+.red-button {
+    background-color: #00000000;
+    border: 2px solid var(--red);
+
+    transition: all 0.3s ease;
+}
+.red-button:hover {
+    background-color: var(--red);
 }
 
 
 .hidden {
     display: none !important;
+}
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+.flex-ver-center {
+    display: flex;
+    justify-content: center;
+}
+.flex-hor-center {
+    display: flex;
+    align-items: center;
 }
 
 .notification {
@@ -200,4 +229,11 @@ input[type="checkbox"]:checked {
     background-color: var(--second-background);
     border-radius: 5px;
     padding: 2em;
+}
+
+.horizontal-line {
+    width: 100%;
+    height: 2px;
+    background-color: var(--text-color);
+    margin-bottom: 1em;
 }

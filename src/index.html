@@ -18,7 +18,7 @@
 
             <input type="text" id="content" placeholder="Enter your text here (optional)">
 
-            <button class="add-embed" data-status-boolean="true" id="add-embed">Add Embed</button>
+            <button class="yellow-button" data-status-boolean="true" id="add-embed">Add Embed</button>
 
             <div class="embed-element hidden" id="embed-element">
                 <input type="text" placeholder="username" name="username" id="username">
@@ -51,7 +51,7 @@
                     </div>
                     
                 </div>
-                <button class="add-field" id="add-field">Add field</button>
+                <button class="blurple-button" id="add-field">Add field</button>
 
                 <input type="url" placeholder="image" name="imageUrl" id="imageUrl">
                 
@@ -65,11 +65,23 @@
             
             </div>
 
-            <button class="sendWebhook-button" id="sendWebhook">Send webhook</button>
+            <button class="green-button" id="sendWebhook">Send webhook</button>
         </div>
 
-        <div class="WIP">
-            WIP
+        <div class="draft-saver">
+            <h1>Drafts</h1>
+            <div class="horizontal-line"></div>
+
+            <input type="text" placeholder="draft name" name="draft-name" id="draft-name">
+            <button class="red-button">Add draft</button>
+            <div class="horizontal-line"></div>
+
+            <div class="drafts">
+                <div class="draft-item flex-col">
+                    <h4>Draft 1</h4>
+                    <button class="red-button">Delete</button>
+                </div>
+            </div>
         </div>
     </div>
 
