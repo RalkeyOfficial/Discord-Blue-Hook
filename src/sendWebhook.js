@@ -1,3 +1,4 @@
+import { displayNotification } from "./includes.js";
 
 function getFieldElements() {
     let embedFields = [];
@@ -43,7 +44,7 @@ async function sendWebhook(){
 
     let result = await checkWebhook(webhook);
     if (!result) {
-        alert("Webhook is not valid!");
+        displayNotification("Webhook is not valid!");
         return;
     };
 
@@ -165,15 +166,4 @@ function generateEmbed() {
     };
 
     return embed;
-}
-
-// a function to display a notification with custom text for 1 seconds and then remove it
-function displayNotification(text) {
-    const notification = document.getElementsByClassName("notification")[0];
-    const notificationText = document.getElementsByClassName("notification-text")[0];
-    notificationText.innerText = text;
-    notification.classList.remove("hidden");
-    setTimeout(() => {
-        notification.classList.add("hidden");
-    }, 1000);
 }

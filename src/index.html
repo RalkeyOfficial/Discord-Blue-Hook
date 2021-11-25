@@ -7,8 +7,18 @@
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <div class="notification hidden">
-        <p class="notification-text"></p>
+    <div class="overlay hidden" id="notification">
+        <p class="overlay-text" id="notification-text"></p>
+    </div>
+    
+    <div class="overlay hidden" id="prompt">
+        <div class="overlay-text">
+            <p class="width-max text-center" id="prompt-text">text</p>
+            <div class="flex-row">
+                <button class="green-button" id="prompt-button-yes">Yes</button>
+                <button class="red-button" id="prompt-button-no" style="margin-right: 0;">No</button>
+            </div>
+        </div>
     </div>
 
 
@@ -73,21 +83,25 @@
             <div class="horizontal-line"></div>
 
             <input type="text" placeholder="draft name" name="draft-name" id="draft-name">
-            <button class="red-button">Add draft</button>
+            <button class="blurple-button" id="add-draft-button">Add draft</button>
             <div class="horizontal-line"></div>
 
             <div class="drafts">
                 <div class="draft-item flex-col">
                     <h4>Draft 1</h4>
-                    <button class="red-button">Delete</button>
+                    <div class="flex-row">
+                        <button id="use-draft" class="green-button">Use</button>
+                        <button id="delete-draft" class="red-button">Delete</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
 
-    <script defer src="./sendWebhook.js"></script>
-    <script defer src="./script.js"></script>
+    <script defer type="module" src="./sendWebhook.js"></script>
+    <script defer type="module" src="./script.js"></script>
+    <script defer type="module" src="./draft.js"></script>
 </body>
 
 </html>

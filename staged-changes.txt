@@ -1,0 +1,2 @@
+1. notifications will now display until you click the screen
+2. created a prompt system to ask the user if he wishes to continue
