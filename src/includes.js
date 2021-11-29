@@ -5,10 +5,6 @@ export function displayNotification(text) {
     notificationText.innerText = text;
     notification.classList.remove("hidden");
     
-    /*
-        removeEventListener does not support callbacks, so i made a function and added the function to the event listener
-        so i can effectively remove the event listener
-    */
     notification.addEventListener("click", closeNotification);
 
     function closeNotification() {
@@ -17,7 +13,7 @@ export function displayNotification(text) {
     }
 }
 
-export function prompt(text, function1, function2) {
+export function prompt(text, approvedFunction, deniedFunction) {
     const prompt = document.getElementById("prompt");
     const promptText = document.getElementById("prompt-text");
 
@@ -34,12 +30,12 @@ export function prompt(text, function1, function2) {
         prompt.classList.add("hidden");
         promptButtonYes.removeEventListener("click", yesFunction);
         promptButtonNo.removeEventListener("click", noFunction);
-        function1();
+        approvedFunction();
     }
     function noFunction() {
         prompt.classList.add("hidden");
         promptButtonYes.removeEventListener("click", yesFunction);
         promptButtonNo.removeEventListener("click", noFunction);
-        function2();   
+        deniedFunction();   
     }
 }

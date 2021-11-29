@@ -1,50 +1,44 @@
-import { displayNotification } from "./includes.js";
+import { displayNotification, prompt } from "./includes.js";
 
 const addDraftButton = document.getElementById("add-draft-button").addEventListener("click", addDraft);
 
+addEventListenerToDrafts();
+
 function addDraft() {
-    const draft = document.getElementById("draft");
-    const draftText = document.getElementById("draft-text");
-    const draftList = document.getElementById("draft-list");
-    const draftListItem = document.createElement("li");
-    const draftListItemText = document.createElement("span");
-    const draftListItemDelete = document.createElement("button");
-    const draftListItemEdit = document.createElement("button");
+    const button1 = $('<button></button>').addClass('use-draft green-button').text('Use');
+    const button2 = $('<button></button>').addClass('delete-draft red-button').text('Delete');
+    
+    const div = $('<div></div>').addClass('flex-row').append(button1, button2);
+    
+    const draftName = $('#draft-name').val();
+    const h4 = $('<h4></h4>').text(draftName);
 
-    draftListItemText.innerText = draftText.value;
-    draftListItemDelete.innerText = "Delete";
-    draftListItemEdit.innerText = "Edit";
+    const draft_item = $('<div></div>').addClass('draft-item flex-col').css({'margin-top':'1em'}).append(h4, div);
+    
+    $('.drafts').first()[0].append(draft_item[0]);
 
-    draftListItemDelete.addEventListener("click", deleteDraft);
-    draftListItemEdit.addEventListener("click", editDraft);
+    addEventListenerToDrafts();
+}
 
-    draftListItem.appendChild(draftListItemText);
-    draftListItem.appendChild(draftListItemDelete);
-    draftListItem.appendChild(draftListItemEdit);
-    draftList.appendChild(draftListItem);
-
-    draftText.value = "";
+function addEventListenerToDrafts() {
+    $('.delete-draft').click(deleteDraft);
+    $('.use-draft').click(useDraft);
 
     function deleteDraft() {
-        draftListItem.remove();
+        const draftName = $(this).parent().parent().find('h4').text();
+        const object = $(this).parent().parent();
+
+        prompt(`Are you sure you want to delete "${draftName}"`, () => {
+            object.remove();
+        },
+        () => {} );
     }
 
-    function editDraft() {
-        const draftListItemText = draftListItem.getElementsByTagName("span")[0];
-        const draftListItemEdit = draftListItem.getElementsByTagName("button")[1];
-        const draftListItemSave = document.createElement("button");
+    function useDraft() {
+        const draftName = $(this).parent().parent().find('h4').text();
+        prompt(`Are you sure you want to use ${draftName}`, () => {
 
-        draftListItemSave.innerText = "Save";
-        draftListItemSave.addEventListener("click", saveDraft);
-
-        draftListItem.removeChild(draftListItemEdit);
-        draftListItem.removeChild(draftListItemSave);
-        draftListItem.appendChild(draftListItemSave);
-
-        function saveDraft() {
-            draftListItemText.innerText = draftText.value;
-            draftListItem.removeChild(draftListItemSave);
-            draftListItem.appendChild(draftListItemEdit);
-        }
+        },
+        () => {});
     }
 }
