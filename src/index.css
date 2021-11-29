@@ -210,11 +210,11 @@ input[type="checkbox"]:checked {
     display: flex;
     flex-direction: column;
 }
-.flex-ver-center {
+.flex-hor-center {
     display: flex;
     justify-content: center;
 }
-.flex-hor-center {
+.flex-ver-center {
     display: flex;
     align-items: center;
 }

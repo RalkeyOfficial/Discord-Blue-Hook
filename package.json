@@ -12,28 +12,26 @@
     "publish": "electron-forge publish",
     "lint": "echo \"No linting configured\""
   },
-
   "build": {
     "appId": "discord-blue-hook",
     "win": {
-        "target": [
-            "nsis"
-        ]
+      "target": [
+        "nsis"
+      ]
     },
     "nsis": {
-        "oneClick": true,
-        "installerIcon": "./src/assets/icons/blue-hook-image.ico",
-        "uninstallerIcon": "./src/assets/icons/blue-hook-image.ico",
-        "uninstallDisplayName": "Blue Hook uninstaller",
-        "license": "LICENSE.md",
-        "perMachine": false,
-        "allowToChangeInstallationDirectory": false,
-        "runAfterFinish": true,
-        "createDesktopShortcut": "always",
-        "createStartMenuShortcut": true
+      "oneClick": true,
+      "installerIcon": "./src/assets/icons/blue-hook-image.ico",
+      "uninstallerIcon": "./src/assets/icons/blue-hook-image.ico",
+      "uninstallDisplayName": "Blue Hook uninstaller",
+      "license": "LICENSE.md",
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": false,
+      "runAfterFinish": true,
+      "createDesktopShortcut": "always",
+      "createStartMenuShortcut": true
     }
   },
-
   "keywords": [],
   "author": {
     "name": "RalkeyOfficial",
@@ -68,7 +66,8 @@
     }
   },
   "dependencies": {
-    "electron-squirrel-startup": "^1.0.0"
+    "electron-squirrel-startup": "^1.0.0",
+    "jquery": "^3.6.0"
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.61",

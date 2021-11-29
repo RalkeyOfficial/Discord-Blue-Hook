@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Blue Hook | v1.1.0 | RalkeyOfficial on github</title>
     <link rel="stylesheet" href="index.css">
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
 </head>
 <body>
     <div class="overlay hidden" id="notification">
@@ -14,9 +15,9 @@
     <div class="overlay hidden" id="prompt">
         <div class="overlay-text">
             <p class="width-max text-center" id="prompt-text">text</p>
-            <div class="flex-row">
-                <button class="green-button" id="prompt-button-yes">Yes</button>
-                <button class="red-button" id="prompt-button-no" style="margin-right: 0;">No</button>
+            <div class="flex-row flex-hor-center">
+                <button class="green-button" id="prompt-button-yes">Yes</button><!--
+            ---><button class="red-button" id="prompt-button-no" style="margin-right: 0;">No</button>
             </div>
         </div>
     </div>
@@ -51,7 +52,7 @@
                         <input type="text" placeholder="field value" name="field-value">
                         <div class="inline-and-label checkbox-div">
                             <input type="checkbox" name="field-inline"><!--
-                        --><label for="field-inline">Inline on</label>
+                        ---><label for="field-inline">Inline on</label>
                         </div>
 
                         <svg class="minus-icon" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
@@ -84,14 +85,14 @@
 
             <input type="text" placeholder="draft name" name="draft-name" id="draft-name">
             <button class="blurple-button" id="add-draft-button">Add draft</button>
-            <div class="horizontal-line"></div>
+            <div class="horizontal-line" style="margin: 0;"></div>
 
             <div class="drafts">
                 <div class="draft-item flex-col">
                     <h4>Draft 1</h4>
                     <div class="flex-row">
-                        <button id="use-draft" class="green-button">Use</button>
-                        <button id="delete-draft" class="red-button">Delete</button>
+                        <button class="use-draft green-button">Use</button>
+                        <button class="delete-draft red-button">Delete</button>
                     </div>
                 </div>
             </div>
