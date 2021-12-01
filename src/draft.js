@@ -38,6 +38,7 @@ function addEventListenersToDrafts() {
 
         prompt(`Are you sure you want to delete "${draftName}"?`, () => {
             object.remove();
+            deleteDataInJson(object.attr('id'));
             displayNotification(`"${draftName}" has been deleted.`);
         },
         () => {} );
@@ -60,6 +61,8 @@ function GenerateID() {
     // check if ID already exists in drafts.json
     fs.readFile(path, 'utf8', (err, data) => {
 
+        if (err) throw err; 
+
         itteration++;
         if (itteration >= 3190187286) {
             displayNotification('you managed to get more than 3 billion drafts you absolute madlad!!');
@@ -68,7 +71,7 @@ function GenerateID() {
         }
 
         // if drafts.json doesn't exist, create it
-        if (err) {
+        if (!data) {
             fs.writeFile(path, '{}', (err) => {
                 if (err) throw err;
             });
@@ -76,8 +79,8 @@ function GenerateID() {
 
         // if ID exists in drafts.json, generate new ID
         const drafts = JSON.parse(data);
-        if (drafts[ID]) {
-            ID = GenerateID();
+        while (drafts[ID]) {
+            ID = '_' + Math.random().toString(36).substr(2);
         }
     });
 
@@ -139,6 +142,19 @@ function saveDraftToJson(draftName, ID) {
 
         const drafts = JSON.parse(data);
         drafts[draft.ID] = draft;
+
+        fs.writeFile(path, JSON.stringify(drafts), (err) => {
+            if (err) throw err;
+        });
+    });
+}
+
+function deleteDataInJson(dataID) {
+    fs.readFile(path, 'utf8', (err, data) => {
+        if (err) throw err;
+
+        const drafts = JSON.parse(data);
+        delete drafts[dataID];
 
         fs.writeFile(path, JSON.stringify(drafts), (err) => {
             if (err) throw err;
