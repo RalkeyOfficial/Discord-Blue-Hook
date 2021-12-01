@@ -14,16 +14,19 @@ function addFieldElement() {
     
     const fieldNameInput = document.createElement('input');
     fieldNameInput.placeholder = 'field name';
+    fieldNameInput.id = 'field-name';
     fieldNameInput.name = 'field-name';
     fieldNameInput.type = 'text';
     
     const fieldValueInput = document.createElement('input');
     fieldValueInput.placeholder = 'field value';
+    fieldValueInput.id = 'field-value';
     fieldValueInput.name = 'field-value';
     fieldValueInput.type = 'text';
     
     const fieldInlineinput = document.createElement('input');
     fieldInlineinput.name = 'field-inline';
+    fieldInlineinput.id = 'field-inline';
     fieldInlineinput.type = 'checkbox';
     
     const label = document.createElement('label');
@@ -43,7 +46,6 @@ function addFieldElement() {
     SVG.setAttribute('width', '24px');
     SVG.setAttribute('height', '24px');
     SVG.setAttribute('viewBox', '0 0 172 172');
-    SVG.viewBox = '0 0 172 172';
     SVG.style = ' fill:#000000;';
     SVG.innerHTML = svgInnerHtml;
 

@@ -5,14 +5,22 @@
     <meta charset="UTF-8">
     <title>Blue Hook | v1.1.0 | RalkeyOfficial on github</title>
     <link rel="stylesheet" href="index.css">
-    <script src="../node_modules/jquery/dist/jquery.js"></script>
+    <!-- 
+        due to contextIsolation inside index.js the normal way of using jquery gets broken so i use
+            npm install jquery --save
+        and
+            <script>window.$ = window.jQuery = require('jquery');</script>
+        to fix this
+    -->
+    <script>window.$ = window.jQuery = require('jquery');</script>
 </head>
 <body>
-    <div class="overlay hidden" id="notification">
+    <div class="overlay flex-hor-center flex-ver-center flex-col hidden" id="notification">
         <p class="overlay-text" id="notification-text"></p>
+        <small>click anywhere to close notification</small>
     </div>
     
-    <div class="overlay hidden" id="prompt">
+    <div class="overlay flex-hor-center flex-ver-center hidden" id="prompt">
         <div class="overlay-text">
             <p class="width-max text-center" id="prompt-text">text</p>
             <div class="flex-row flex-hor-center">
@@ -48,10 +56,10 @@
 
                 <div class="field-list" id="field-list">
                     <div class="field-element">
-                        <input type="text" placeholder="field name" name="field-name">
-                        <input type="text" placeholder="field value" name="field-value">
+                        <input type="text" placeholder="field name" name="field-name" id="field-name">
+                        <input type="text" placeholder="field value" name="field-value" id="field-value">
                         <div class="inline-and-label checkbox-div">
-                            <input type="checkbox" name="field-inline"><!--
+                            <input type="checkbox" name="field-inline" id="field-inline"><!--
                         ---><label for="field-inline">Inline on</label>
                         </div>
 
@@ -88,13 +96,6 @@
             <div class="horizontal-line" style="margin: 0;"></div>
 
             <div class="drafts">
-                <div class="draft-item flex-col">
-                    <h4>Draft 1</h4>
-                    <div class="flex-row">
-                        <button class="use-draft green-button">Use</button>
-                        <button class="delete-draft red-button">Delete</button>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
