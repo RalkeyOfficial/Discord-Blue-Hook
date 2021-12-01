@@ -1,0 +1,93 @@
+{
+    "undefined": {
+        "name": { "isTrusted": true },
+        "data": {
+            "webhook-url": "webhook",
+            "content": "content",
+            "embedEnabled": false,
+            "embed": {
+                "author": {
+                    "name": "username",
+                    "url": "user url",
+                    "icon_url": "user icon"
+                },
+                "title": "title",
+                "title_url": "title url",
+                "description": "description",
+                "color": "colour",
+                "thumbnail": { "url": "thumbnail" },
+                "image": { "url": "image" },
+                "fields": [
+                    {
+                        "fieldName": "field 1",
+                        "fieldValue": "value 1",
+                        "fieldInline": true
+                    },
+                    {
+                        "fieldName": "field 2",
+                        "fieldValue": "value 2",
+                        "fieldInline": false
+                    }
+                ],
+                "footer": { "text": "footer text", "icon_url": "footer icon" }
+            }
+        }
+    },
+    "_7lkza52aigl": {
+        "ID": "_7lkza52aigl",
+        "name": "penis",
+        "data": {
+            "webhook-url": "a webhook url",
+            "content": "content",
+            "embedEnabled": false,
+            "embed": {
+                "author": {
+                    "name": "username",
+                    "url": "user url",
+                    "icon_url": "user icon"
+                },
+                "title": "title",
+                "title_url": "title url",
+                "description": "description",
+                "color": "colour",
+                "thumbnail": { "url": "thumbnail image" },
+                "image": { "url": "image" },
+                "fields": [
+                    {
+                        "fieldName": "1 penis",
+                        "fieldValue": "1 ball",
+                        "fieldInline": true
+                    },
+                    {
+                        "fieldName": "2 penises",
+                        "fieldValue": "2 balls",
+                        "fieldInline": false
+                    }
+                ],
+                "footer": { "text": "footer text", "icon_url": "footer icon" }
+            }
+        }
+    },
+    "_fdkq0lvmtzh": {
+        "ID": "_fdkq0lvmtzh",
+        "name": "test",
+        "data": {
+            "webhook-url": "",
+            "content": "",
+            "embedEnabled": false,
+            "embed": {
+                "author": { "name": "", "url": "", "icon_url": "" },
+                "title": "",
+                "title_url": "",
+                "description": "",
+                "color": "",
+                "thumbnail": { "url": "" },
+                "image": { "url": "" },
+                "fields": [
+                    { "fieldName": "", "fieldValue": "", "fieldInline": false }
+                ],
+                "footer": { "text": "", "icon_url": "" }
+            }
+        }
+    }
+}
