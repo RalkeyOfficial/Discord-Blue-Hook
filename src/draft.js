@@ -37,8 +37,8 @@ function addEventListenersToDrafts() {
         const object = $(this).parent().parent();
 
         prompt(`Are you sure you want to delete "${draftName}"?`, () => {
-            object.remove();
             deleteDataInJson(object.attr('id'));
+            object.remove();
             displayNotification(`"${draftName}" has been deleted.`);
         },
         () => {} );
@@ -110,7 +110,7 @@ function saveDraftToJson(draftName, ID) {
         data: {
             'webhook-url': $('#webhook').val(),
             'content': $('#content').val(),
-            'embedEnabled': $('#add-embed').is(':checked'),
+            'embedEnabled': $('#add-embed').attr('data-status-boolean'),
             'embed': {
                 'author': {
                     'name': $('#username').val(),
