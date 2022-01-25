@@ -3,12 +3,13 @@ const fs = require('fs');
 
 document.getElementById("add-draft-button").addEventListener("click", addDraft);
 
+const svgInnerHtml = document.getElementsByClassName('minus-icon')[0].innerHTML;
 const path = 'src/drafts/drafts.json';
 
 checkIfDraftsFileExists();
 
-addEventListenersToDrafts();
 showAllDrafts();
+addEventListenersToDrafts();
 
 
 function checkIfDraftsFileExists() {
@@ -43,8 +44,8 @@ function addDraft() {
 }
 
 function addEventListenersToDrafts() {
-    $('.delete-draft').click(deleteDraft);
-    $('.use-draft').click(useDraft);
+    $('.delete-draft').on("click", deleteDraft)
+    $('.use-draft').on("click", useDraft);
 
     function deleteDraft() {
         const draftName = $(this).parent().parent().find('h4').text();
@@ -59,10 +60,12 @@ function addEventListenersToDrafts() {
     }
 
     function useDraft() {
+        console.log('use draft');
         const draftName = $(this).parent().parent().find('h4').text();
         
-        prompt(`Are you sure you want to use ${draftName}`, () => {
-
+        prompt(`Are you sure you want to use "${draftName}"?`, () => {
+            loadDraft($(this));
+            displayNotification(`"${draftName}" has been loaded.`);
         },
         () => {});
     }
@@ -115,31 +118,31 @@ function saveDraftToJson(draftName, ID) {
         ID: ID,
         name: draftName,
         data: {
-            'webhook-url': $('#webhook').val(),
-            'content': $('#content').val(),
-            'embedEnabled': $('#add-embed').attr('data-status-boolean'),
-            'embed': {
-                'author': {
-                    'name': $('#username').val(),
-                    'url': $('#user-url').val(),
-                    'icon_url': $('#user-icon').val()
+            webhook_url: $('#webhook').val(),
+            content: $('#content').val(),
+            embedEnabled: $('#add-embed').attr('data-status-boolean'),
+            embed: {
+                author: {
+                    name: $('#username').val(),
+                    url: $('#user-url').val(),
+                    icon_url: $('#user-icon').val()
                 },
-                'title': $('#title').val(),
-                'title_url': $('#titleUrl').val(),
-                'description': $('#description').val(),
-                'color': $('#color').val(),
-                'thumbnail': {
-                    'url': $('#thumbnailUrl').val()
+                title: $('#title').val(),
+                title_url: $('#titleUrl').val(),
+                description: $('#description').val(),
+                color: $('#color').val(),
+                thumbnail: {
+                    url: $('#thumbnailUrl').val()
                 },
-                'image': {
-                    'url': $('#imageUrl').val()
+                image: {
+                    url: $('#imageUrl').val()
                 },
-                'fields': fieldsArray,
-                'footer': {
-                    'text': $('#footerText').val(),
-                    'icon_url': $('#footerIconUrl').val()
+                fields: fieldsArray,
+                footer: {
+                    text: $('#footerText').val(),
+                    icon_url: $('#footerIconUrl').val()
                 },
-                'timestamp': $('#timestamp').is(':checked')
+                timestamp: $('#timestamp').is(':checked')
             }
         }
     };
@@ -194,4 +197,146 @@ function showAllDrafts() {
 
     addEventListenersToDrafts();
 
+}
+
+async function loadDraft(object) {
+    const draftID = object.parent().parent().attr('id');
+    let draftData;
+
+    console.log("id: " + draftID);
+
+    fs.readFile(path, 'utf8', (err, data) => {
+        if (err) throw err;
+
+        draftData = JSON.parse(data)[draftID].data;
+
+        console.log(draftData);
+
+
+        $('#webhook').val(draftData.webhook_url);
+        $('#content').val(draftData.content);
+
+        $('#add-embed').attr('data-status-boolean', draftData.embedEnabled);
+        if (draftData.embedEnabled !== true) {
+            $('#add-embed').text('Add Embed');
+        } else {
+            $('#add-embed').text('Remove Embed');
+        }
+
+        $('#username').val(draftData.embed.author.name);
+        $('#user-url').val(draftData.embed.author.url);
+        $('#user-icon').val(draftData.embed.author.icon_url);
+
+        $('#title').val(draftData.embed.title);
+        $('#titleUrl').val(draftData.embed.title_url);
+
+        $('#description').val(draftData.embed.description);
+        $('#color').val(draftData.embed.color);
+
+        $('#thumbnailUrl').val(draftData.embed.thumbnail.url);
+        $('#imageUrl').val(draftData.embed.image.url);
+
+        $('#footerText').val(draftData.embed.footer.text);
+        $('#footerIconUrl').val(draftData.embed.footer.icon_url);
+
+        $('#timestamp')[0].checked = draftData.embed.timestamp;
+
+        removeAllFieldElement();
+        for(const fieldData of draftData.embed.fields) {
+            const name = fieldData.fieldName;
+            const value = fieldData.fieldValue;
+            const inline = fieldData.fieldInline;
+
+            addFieldElements(name, value, inline);
+        }
+
+    });
+}
+
+
+
+function removeAllFieldElement() {
+    $('.field-element').remove();
+}
+
+function addFieldElements(name, value, inline) {
+    const fieldList = document.getElementById('field-list');
+    const fieldElement = document.createElement('div');
+    fieldElement.className = `field-element`;
+    
+    const fieldNameInput = document.createElement('input');
+    fieldNameInput.placeholder = 'field name';
+    fieldNameInput.id = 'field-name';
+    fieldNameInput.name = 'field-name';
+    fieldNameInput.type = 'text';
+    
+    const fieldValueInput = document.createElement('input');
+    fieldValueInput.placeholder = 'field value';
+    fieldValueInput.id = 'field-value';
+    fieldValueInput.name = 'field-value';
+    fieldValueInput.type = 'text';
+    
+    const fieldInlineinput = document.createElement('input');
+    fieldInlineinput.name = 'field-inline';
+    fieldInlineinput.id = 'field-inline';
+    fieldInlineinput.type = 'checkbox';
+    
+    const label = document.createElement('label');
+    label.for = 'field-inline';
+    label.innerHTML = 'Inline on';
+
+    const inlineAndLabelDiv = document.createElement('div');
+    inlineAndLabelDiv.className = 'inline-and-label';
+    inlineAndLabelDiv.appendChild(fieldInlineinput);
+    inlineAndLabelDiv.appendChild(label);
+    
+    const SVG = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    SVG.classList = 'minus-icon';
+    SVG.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+    SVG.setAttribute('x', '0px');
+    SVG.setAttribute('y', '0px');
+    SVG.setAttribute('width', '24px');
+    SVG.setAttribute('height', '24px');
+    SVG.setAttribute('viewBox', '0 0 172 172');
+    SVG.style = ' fill:#000000;';
+    SVG.innerHTML = svgInnerHtml;
+
+    // set proper data into the field
+    fieldNameInput.value = name;
+    fieldValueInput.value = value;
+    if (inline === true) fieldInlineinput.checked = true;
+    else fieldInlineinput.checked = false;
+
+    fieldElement.appendChild(fieldNameInput);
+    fieldElement.appendChild(fieldValueInput);
+    fieldElement.appendChild(inlineAndLabelDiv);
+    fieldElement.appendChild(SVG);
+    
+    fieldList.appendChild(fieldElement);
+
+    addEventListenersToFields();
+}
+
+function addEventListenersToFields() {
+    const fields = document.getElementsByClassName("field-element");
+    if (!fields) return;
+
+    for (let field of fields) {
+        field = [...field.childNodes];
+        field = field.filter(currentElement => {
+            return currentElement.nodeName === 'svg';
+        });
+        field[0].addEventListener("click", removeFieldElement);
+    }
+}
+
+function removeFieldElement(event) {
+    let field = event.path
+    field = field.filter(currentElement => {
+        return currentElement.nodeName === 'svg';
+    });
+    field = field[0].parentElement;
+
+    const fieldList = document.getElementById('field-list');
+    fieldList.removeChild(field);
 }

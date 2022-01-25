@@ -5,7 +5,7 @@ document.getElementById("sendWebhook").addEventListener("click", sendWebhook);
 async function sendWebhook(){
     const webhook = document.getElementById("webhook").value;
     const contentText = document.getElementById("content").value;
-    const embedEnabled = document.getElementById("embed-element").classList.contains("hidden");
+    const embedEnabled = $('#add-embed').getAttribute('data-embed-enabled') === "true" ? true : false;
 
     let result = await checkWebhook(webhook);
     if (!result) {
