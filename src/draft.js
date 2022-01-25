@@ -3,9 +3,23 @@ const fs = require('fs');
 
 document.getElementById("add-draft-button").addEventListener("click", addDraft);
 
-addEventListenersToDrafts();
-
 const path = 'src/drafts/drafts.json';
+
+checkIfDraftsFileExists();
+
+addEventListenersToDrafts();
+showAllDrafts();
+
+
+function checkIfDraftsFileExists() {
+    fs.readFile(path, 'utf8', (err, data) => {
+        if (err) {
+            fs.writeFile(path, '{}', (err) => {
+                if (err) throw err;
+            });
+        }
+    });
+}
 
 function addDraft() {
     const id = GenerateID();
@@ -69,13 +83,6 @@ function GenerateID() {
             itteration = 0;
             return;
         }
-
-        // if drafts.json doesn't exist, create it
-        if (!data) {
-            fs.writeFile(path, '{}', (err) => {
-                if (err) throw err;
-            });
-        };
 
         // if ID exists in drafts.json, generate new ID
         const drafts = JSON.parse(data);
@@ -160,4 +167,31 @@ function deleteDataInJson(dataID) {
             if (err) throw err;
         });
     });
+}
+
+function showAllDrafts() {
+    // show all the drafts from the json file
+    fs.readFile(path, 'utf8', (err, data) => {
+        if (err) throw err;
+
+        const drafts = JSON.parse(data);
+        for (const draft in drafts) {
+            const draftName = drafts[draft].name;
+            const id = drafts[draft].ID;
+
+            const button1 = $('<button></button>').addClass('use-draft green-button').text('Use');
+            const button2 = $('<button></button>').addClass('delete-draft red-button').text('Delete');
+            
+            const div = $('<div></div>').addClass('flex-row').append(button1, button2);
+            
+            const h4 = $('<h4></h4>').text(draftName === '' ? 'Draft' : draftName);
+
+            const draft_item = $('<div></div>').addClass('draft-item flex-col').css({'margin-top':'1em'}).attr('id', id).append(h4, div);
+            
+            $('.drafts').first().append(draft_item);
+        }
+    });
+
+    addEventListenersToDrafts();
+
 }
