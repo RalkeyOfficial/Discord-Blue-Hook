@@ -36,11 +36,11 @@ async function sendWebhook(){
     } else if (res.status === 429) {
         displayNotification("Too many requests! " + res.status);
     } else if (res.status === 500) {
-        displayNotification("Internal server error!" + res.status);
+        displayNotification("Internal server error! " + res.status);
     } else if (res.status === 400) {
-        displayNotification("Invalid request!" + res.status);
+        displayNotification("Invalid request! " + res.status);
     } else {
-        displayNotification("Unknown error! error:" + res.status);
+        displayNotification("Unknown error! error: " + res.status);
     }
 }
 
