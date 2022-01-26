@@ -193,13 +193,13 @@ function showAllDrafts() {
             
             $('.drafts').first().append(draft_item);
         }
-    });
 
-    addEventListenersToDrafts();
+        addEventListenersToDrafts();
+    });
 
 }
 
-async function loadDraft(object) {
+function loadDraft(object) {
     const draftID = object.parent().parent().attr('id');
     let draftData;
 
