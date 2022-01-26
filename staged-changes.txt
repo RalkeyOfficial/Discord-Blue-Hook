@@ -1,5 +1,0 @@
-1. notifications will now display until you click the screen
-2. created a prompt system to ask the user if he wishes to continue
-3. fixed a bug inside script.js regarding adding fields
-4. you can save current embed as a draft
-5. you can delete draft's
