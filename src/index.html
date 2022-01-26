@@ -3,12 +3,31 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Blue Hook | v1.1.0 | RalkeyOfficial on github</title>
+    <title>Blue Hook | v1.2.0 | RalkeyOfficial on github</title>
     <link rel="stylesheet" href="index.css">
+    <!-- 
+        due to contextIsolation inside index.js the normal way of using jquery gets broken so i use
+            npm install jquery --save
+        and
+            <script>window.$ = window.jQuery = require('jquery');</script>
+        to fix this
+    -->
+    <script>window.$ = window.jQuery = require('jquery');</script>
 </head>
 <body>
-    <div class="notification hidden">
-        <p class="notification-text"></p>
+    <div class="overlay flex-hor-center flex-ver-center flex-col hidden" id="notification">
+        <p class="overlay-text" id="notification-text"></p>
+        <small>click anywhere to close notification</small>
+    </div>
+    
+    <div class="overlay flex-hor-center flex-ver-center hidden" id="prompt">
+        <div class="overlay-text">
+            <p class="width-max text-center" id="prompt-text">text</p>
+            <div class="flex-row flex-hor-center">
+                <button class="green-button" id="prompt-button-yes">Yes</button><!--
+            ---><button class="red-button" id="prompt-button-no" style="margin-right: 0;">No</button>
+            </div>
+        </div>
     </div>
 
 
@@ -18,7 +37,7 @@
 
             <input type="text" id="content" placeholder="Enter your text here (optional)">
 
-            <button class="add-embed" data-status-boolean="true" id="add-embed">Add Embed</button>
+            <button class="yellow-button" data-status-boolean="false" id="add-embed">Add Embed</button>
 
             <div class="embed-element hidden" id="embed-element">
                 <input type="text" placeholder="username" name="username" id="username">
@@ -37,11 +56,11 @@
 
                 <div class="field-list" id="field-list">
                     <div class="field-element">
-                        <input type="text" placeholder="field name" name="field-name">
-                        <input type="text" placeholder="field value" name="field-value">
+                        <input type="text" placeholder="field name" name="field-name" id="field-name">
+                        <input type="text" placeholder="field value" name="field-value" id="field-value">
                         <div class="inline-and-label checkbox-div">
-                            <input type="checkbox" name="field-inline"><!--
-                        --><label for="field-inline">Inline on</label>
+                            <input type="checkbox" name="field-inline" id="field-inline"><!--
+                        ---><label for="field-inline">Inline on</label>
                         </div>
 
                         <svg class="minus-icon" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
@@ -51,7 +70,7 @@
                     </div>
                     
                 </div>
-                <button class="add-field" id="add-field">Add field</button>
+                <button class="blurple-button" id="add-field">Add field</button>
 
                 <input type="url" placeholder="image" name="imageUrl" id="imageUrl">
                 
@@ -65,17 +84,26 @@
             
             </div>
 
-            <button class="sendWebhook-button" id="sendWebhook">Send webhook</button>
+            <button class="green-button" id="sendWebhook">Send webhook</button>
         </div>
 
-        <div class="WIP">
-            WIP
+        <div class="draft-saver">
+            <h1>Drafts</h1>
+            <div class="horizontal-line"></div>
+
+            <input type="text" placeholder="draft name" name="draft-name" id="draft-name">
+            <button class="blurple-button" id="add-draft-button">Add draft</button>
+            <div class="horizontal-line" style="margin: 0;"></div>
+
+            <div class="drafts">
+            </div>
         </div>
     </div>
 
 
-    <script defer src="./sendWebhook.js"></script>
-    <script defer src="./script.js"></script>
+    <script defer type="module" src="./sendWebhook.js"></script>
+    <script defer type="module" src="./script.js"></script>
+    <script defer type="module" src="./draft.js"></script>
 </body>
 
 </html>

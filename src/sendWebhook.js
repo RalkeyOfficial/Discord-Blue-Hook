@@ -1,49 +1,15 @@
-
-function getFieldElements() {
-    let embedFields = [];
-
-    const fields = document.getElementsByClassName("field-element");
-    if (!fields) return;
-
-    for (let field of fields) {
-        field = [...field.childNodes];
-        field = field.filter(currentElement => {
-            // returns true if element is NOT in array
-            const arrayOfTextNodes = ["#text", "BR", "BUTTON", "LABEL", "svg"];
-            return !arrayOfTextNodes.includes(currentElement.nodeName);
-            // remove "!" so it returns true if it's in the array
-        });
-
-        let field_name = field[0].value;
-        let field_value = field[1].value;
-
-        // turn nodeList into array and filter it
-        field[2] = [...field[2].childNodes];
-        field[2] = field[2].filter(currentElement => {
-            // returns true if element is NOT in array
-            const arrayOfTextNodes = ["INPUT"];
-            return arrayOfTextNodes.includes(currentElement.nodeName);
-            // remove "!" so it returns true if it's in the array
-        });
-        let inline = field[2][0].checked;
-
-        embedFields.push({ name: field_name, value: field_value, inline: inline });
-        
-    }
-
-    return embedFields;
-}
+import { displayNotification } from "./includes.js";
 
 document.getElementById("sendWebhook").addEventListener("click", sendWebhook);
 
 async function sendWebhook(){
     const webhook = document.getElementById("webhook").value;
     const contentText = document.getElementById("content").value;
-    const embedEnabled = document.getElementById("embed-element").classList.contains("hidden");
+    const embedEnabled = $('#add-embed').attr('data-embed-enabled') === "true" ? true : false;
 
     let result = await checkWebhook(webhook);
     if (!result) {
-        alert("Webhook is not valid!");
+        displayNotification("Webhook is not valid!");
         return;
     };
 
@@ -56,7 +22,6 @@ async function sendWebhook(){
         msg.embeds = [embed];
     }
 
-    console.log(msg);
 
     let res = await fetch(webhook, {
         "method":"POST",
@@ -71,11 +36,11 @@ async function sendWebhook(){
     } else if (res.status === 429) {
         displayNotification("Too many requests! " + res.status);
     } else if (res.status === 500) {
-        displayNotification("Internal server error!" + res.status);
+        displayNotification("Internal server error! " + res.status);
     } else if (res.status === 400) {
-        displayNotification("Invalid request!" + res.status);
+        displayNotification("Invalid request! " + res.status);
     } else {
-        displayNotification("Unknown error! error:" + res.status);
+        displayNotification("Unknown error! error: " + res.status);
     }
 }
 
@@ -138,20 +103,22 @@ function generateEmbed() {
     if (thumbnailUrl) embed.thumbnail = { url: thumbnailUrl };
 
     // get fields and put it into an array which will then be put in the embed
-    const fields = getFieldElements();
-    if (fields) {
-        let fieldEmbeds = [];
-        fields.forEach(field => {
-            // if both fields are empty skip this itteration
-            if (!field.name && !field.value) return;
+    if ($('.field-element') && $('.field-element').length > 0) {
+        const fields = $('.field-element')
 
-            fieldEmbeds.push({
-                name: field.name.replace("", "\u200B"),
-                value: field.value.replace("", "\u200B"),
-                inline: field.inline
-            });
-
+        const fieldEmbeds = [];
+        fields.each(function() {
+            const fieldName = $(this).find('#field-name').val().replace("", "\u200B");
+            const fieldValue = $(this).find('#field-value').val().replace("", "\u200B");
+            const fieldInline = $(this).find('#field-inline').is(':checked');
+            const field = {
+                name: fieldName,
+                value: fieldValue,
+                inline: fieldInline,
+            };
+            fieldEmbeds.push(field);
         });
+
         embed.fields = fieldEmbeds;
     }
 
@@ -165,15 +132,4 @@ function generateEmbed() {
     };
 
     return embed;
-}
-
-// a function to display a notification with custom text for 1 seconds and then remove it
-function displayNotification(text) {
-    const notification = document.getElementsByClassName("notification")[0];
-    const notificationText = document.getElementsByClassName("notification-text")[0];
-    notificationText.innerText = text;
-    notification.classList.remove("hidden");
-    setTimeout(() => {
-        notification.classList.add("hidden");
-    }, 1000);
 }
