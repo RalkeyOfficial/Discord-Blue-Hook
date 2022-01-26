@@ -28,8 +28,6 @@ by using Blue Hook's easy to use GUI you are able to send highly customized mess
 
 <img src="./src/assets/readme-assets/preview1.png">
 
-<img src="./src/assets/readme-assets/preview2.png">
-
 ---
 
 ## supported OS:
@@ -60,3 +58,4 @@ by using Blue Hook's easy to use GUI you are able to send highly customized mess
     - custom footer text
     - custom footer icon
     - toggle footer timestamp
+- save webhook content as draft to JSON file
